@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>星州省官网-省情概况</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", "PingFang SC", sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ---------- 头部导航 ---------- */
+        header {
+            background-color: #0a3d62;
+            color: #fff;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-box {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: #ffd32a;
+        }
+
+        /* 当前页面高亮 */
+        nav a.active-page {
+            color: #ffd32a;
+            border-bottom: 2px solid #ffd32a;
+            padding-bottom: 4px;
+            font-weight: bold;
+        }
+
+        /* ---------- 横幅 ---------- */
+        .sub-banner {
+            height: 240px;
+            background: linear-gradient(rgba(10, 61, 98, 0.75), rgba(10, 61, 98, 0.8)), url('https://picsum.photos/1920/600') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        .sub-banner h1 {
+            font-size: 44px;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .sub-banner p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* ---------- 主体 ---------- */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 5%;
+        }
+
+        .section-title {
+            font-size: 30px;
+            color: #0a3d62;
+            margin: 45px 0 25px 0;
+            padding-left: 18px;
+            border-left: 5px solid #0a3d62;
+            line-height: 1.3;
+        }
+
+        /* 概览卡片 */
+        .overview-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 45px;
+        }
+
+        .overview-item {
+            background: #fff;
+            padding: 28px 18px;
+            border-radius: 10px;
+            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 4px solid #0a3d62;
+        }
+
+        .overview-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-top-color: #ffd32a;
+        }
+
+        .overview-item .num {
+            font-size: 32px;
+            font-weight: bold;
+            color: #0a3d62;
+            margin-bottom: 8px;
+        }
+
+        .overview-item .label {
+            color: #555;
+            font-size: 15px;
+        }
+
+        /* 内容卡片 */
+        .info-card {
+            background: #fff;
+            padding: 30px 35px;
+            border-radius: 10px;
+            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+            margin-bottom: 30px;
+            transition: box-shadow 0.3s;
+        }
+
+        .info-card:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .info-card h3 {
+            color: #0a3d62;
+            font-size: 24px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3::before {
+            content: "▪";
+            color: #ffd32a;
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        .info-card p {
+            text-indent: 2em;
+            margin-bottom: 12px;
+            color: #444;
+            font-size: 16px;
+        }
+
+        .info-card ul {
+            margin-left: 2em;
+            margin-bottom: 12px;
+        }
+
+        .info-card ul li {
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        /* 两栏布局 */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        /* 图片占位 */
+        .img-placeholder {
+            background: #e0e8f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a8a9a;
+            font-size: 16px;
+            margin: 20px 0;
+            overflow: hidden;
+            min-height: 200px;
+        }
+
+        .img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #0a3d62;
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 6px 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .header-box {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav a {
+                margin-left: 15px;
+                font-size: 14px;
+            }
+            .sub-banner h1 {
+                font-size: 32px;
+            }
+            .overview-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+            .info-card {
+                padding: 20px;
+            }
+            .section-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .overview-cards {
+                grid-template-columns: 1fr;
+            }
+            nav a {
+                margin-left: 8px;
+                font-size: 13px;
+            }
+            .sub-banner {
+                height: 180px;
+            }
+            .sub-banner h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== 顶部导航（与首页保持一致） ========== -->
+    <header>
+        <div class="header-box">
+            <div class="logo">星州省 官方门户</div>
+            <nav>
+                <a href="index.html">首页</a>
+                <a href="qingkuang.html" class="active-page">省情概况</a>
+                <a href="zhengwugongkai.html">政务公开</a>
+                <a href="fuwu.html">民生服务</a>
+                <a href="wenlv.html">文旅风光</a>
+                <a href="lianxiwomen.html">联系我们</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== 次级横幅 ========== -->
+    <section class="sub-banner">
+        <h1>省情概况</h1>
+        <p>了解星州 · 从这里开始</p>
+    </section>
+
+    <!-- ========== 主体内容 ========== -->
+    <div class="container">
+
+        <!-- 核心数据概览 -->
+        <div class="overview-cards">
+            <div class="overview-item">
+                <div class="num">5.8万<span style="font-size:16px;"> km²</span></div>
+                <div class="label">总面积</div>
+            </div>
+            <div class="overview-item">
+                <div class="num">约 2800<span style="font-size:16px;"> 万</span></div>
+                <div class="label">常住人口</div>
+            </div>
+            <div class="overview-item">
+                <div class="num">16<span style="font-size:16px;"> 个</span></div>
+                <div class="label">下辖地市</div>
+            </div>
+            <div class="overview-item">
+                <div class="num">3200<span style="font-size:16px;"> 年+</span></div>
+                <div class="label">建城历史</div>
+            </div>
+        </div>
+
+        <!-- 地理与区位 -->
+        <h2 class="section-title">地理与区位</h2>
+        <div class="info-card">
+            <h3>得天独厚的自然禀赋</h3>
+            <p>星州省位于我国中部腹地，地处区域核心地带，东接沿海开放前沿，西连广袤内陆腹地，是承东启西、连南贯北的重要交通枢纽。全省总面积约5.8万平方公里，地势呈现“北高南低、西山东原”的格局，山地、丘陵、平原、湖泊交错分布，形成了丰富多样的自然地貌。</p>
+            <p>省内中部为广阔的星中平原，土壤肥沃、河网密布，是全省粮食主产区和人口密集区。南部则分布着大量的大型淡水湖泊，水域面积超过1200平方公里，素有“千湖之省”的美誉。</p>
+            <p>气候方面，星州省属于亚热带季风气候，四季分明、雨热同期，年平均气温15℃—18℃，年降水量800—1400毫米，优越的气候条件为农业生产和生态宜居提供了良好基础。</p>
+        </div>
+
+        <!-- 两栏：历史+人口 -->
+        <div class="two-col">
+            <div class="info-card">
+                <h3>悠久灿烂的历史文化</h3>
+                <p>星州省历史悠久，早在3200多年前的商周时期就有先民在此繁衍生息。春秋战国时期属楚文化圈，境内出土的大量青铜器、玉器等文物见证了当时的繁荣。秦汉时期设郡置县，星州正式纳入中央王朝行政区划体系。</p>
+                <p>唐宋年间，星州成为南北商贸往来的重要节点，文化交融频繁，留下了众多古迹遗存。全省现有全国重点文物保护单位48处，省级文物保护单位326处。其中星州古城墙、凌云寺、文昌阁等文化遗产闻名遐迩，是研究中华文明多元一体格局的重要实证。</p>
+                <p>星州还是红色热土，近现代革命史上涌现出众多英雄人物和感人事迹，拥有多处爱国主义教育基地和革命纪念场馆。</p>
+            </div>
+            <div class="info-card">
+                <h3>人口与民族构成</h3>
+                <p>截至2026年，星州省常住人口约2800万人，其中城镇人口占比约64%，人口密度适中，分布相对均衡。全省以汉族为主体，同时聚居着苗族、土家族、回族、壮族等32个少数民族，少数民族人口约占总人口的8.5%。</p>
+                <p>各民族在长期的生产生活中和睦相处、交融互鉴，形成了丰富多彩的民俗文化和独特的地域风情。传统节庆活动如星州灯会、山歌节、龙舟竞渡等深受群众喜爱，是星州文化多样性的生动体现。</p>
+                <p>近年来，星州省持续推进新型城镇化建设，完善公共服务配套，人口综合素质稳步提升，劳动力资源丰富且结构持续优化。</p>
+            </div>
+        </div>
+
+        <!-- 经济发展 -->
+        <h2 class="section-title">经济发展</h2>
+        <div class="info-card">
+            <h3>多元支撑的现代产业体系</h3>
+            <p>星州省坚持高质量发展理念，积极构建现代化产业体系。2025年全省地区生产总值突破5.8万亿元，经济结构持续优化，三次产业结构比例为6.8:41.2:52.0，服务业占比稳步提升。</p>
+            <p><strong>先进制造业：</strong>形成了以高端装备制造、新能源汽车、电子信息、生物医药为主导的产业集群。星州高新技术产业开发区集聚了超过800家高新技术企业，是全省创新驱动发展的核心引擎。</p>
+            <p><strong>现代农业：</strong>星州是重要的商品粮基地和特色农产品优势区，粮食年产量稳定在2200万吨以上，优质稻米、茶叶、中药材、特色水果等农产品享誉全国，"星州绿茶""星湖香米"等品牌价值持续攀升。</p>
+            <p><strong>现代服务业：</strong>金融、物流、信息技术、文旅康养等产业蓬勃发展。星州自贸试验区挂牌运行以来，累计形成制度创新成果120余项，营商环境持续优化，市场主体活力显著增强。</p>
+        </div>
+
+        <!-- 交通与基础设施 -->
+        <h2 class="section-title">交通与基础设施</h2>
+        <div class="info-card">
+            <h3>四通八达的立体交通网络</h3>
+            <p>星州省交通区位优势显著，已形成公路、铁路、航空、水运协调发展的综合交通运输体系。全省高速公路通车里程超过6200公里，实现"县县通高速"；铁路运营里程达3800公里，其中高速铁路1200公里，星州北站是中部地区重要的高铁枢纽站。</p>
+            <p>星州各一线、新一线城市国际机场开通国内外航线210余条，年旅客吞吐量超过3500亿人次，货邮吞吐量位居全国前列。内河航运方面，依托星江黄金水道，星州海港年货物吞吐量达2.8亿吨，是连接长江经济带的重要港口节点。</p>
+            <p>城乡基础设施日益完善，5G网络覆盖率超过95%，智慧城市建设加速推进，为经济社会数字化转型提供了坚实支撑。</p>
+        </div>
+
+        <!-- 生态与文旅（两栏） -->
+        <div class="two-col">
+            <div class="info-card">
+                <h3>生态环境与绿色发展</h3>
+                <p>星州省牢固树立"绿水青山就是金山银山"的发展理念，扎实推进生态文明建设。全省森林覆盖率达42.5%，空气质量优良天数比例保持在88%以上，地表水国考断面水质优良率超过92%。</p>
+                <p>星岭国家森林公园、星湖湿地自然保护区等生态功能区保护成效显著，生物多样性丰富，境内有国家重点保护野生动植物120余种。全省已创建国家级生态文明建设示范市4个、"绿水青山就是金山银山"实践创新基地3个。</p>
+                <p>绿色低碳转型深入推进，单位GDP能耗持续下降，新能源装机占比超过35%，循环经济产业链不断完善，美丽星州建设迈出坚实步伐。</p>
+            </div>
+            <div class="info-card">
+                <h3>文旅资源与特色美食</h3>
+                <p>星州省文旅资源丰富，拥有国家级风景名胜区6处、5A级景区9家、4A级景区38家。星岭云海、星湖夕照、古城烟雨等自然与人文景观交相辉映，每年吸引国内外游客超过1.2亿人次。</p>
+                <p>地方美食独具特色，星州菜系以鲜香醇厚、口味适中著称。代表菜品有星湖鱼头煲、星州腊味合蒸、凌云笋干炖鸡等，街头巷尾的星州米粉、豆皮卷、糖油粑粑等小吃更是深受百姓喜爱。</p>
+            </div>
+        </div>
+
+        <!-- 社会发展 -->
+        <h2 class="section-title">社会事业与民生保障</h2>
+        <div class="info-card">
+            <h3>共建共享的幸福星州</h3>
+            <p>星州省始终坚持以人民为中心的发展思想，持续加大民生投入。全省拥有高等院校68所，其中"双一流"建设高校3所，高等教育毛入学率达到62%；医疗卫生机构超过3.2万个，每千人口执业医师数达到3.1人，基本医保参保率稳定在97%以上。</p>
+            <p>社会保障体系不断完善，城乡居民基本养老保险覆盖率超过93%，城乡低保标准逐年提高。文化事业繁荣发展，全省公共图书馆、文化馆（站）、博物馆等公共文化设施实现城乡全覆盖。</p>
+            <p>社会治理效能持续提升，"平安星州"建设成效显著，群众安全感满意度连续多年保持高位。全省上下正凝心聚力，向着建设现代化宜居宜业新星州的目标奋勇前进。</p>
+        </div>
+    </div>
+
+    <!-- ========== 底部信息（与首页保持一致） ========== -->
+    <footer>
+        <p>星州省人民政府 版权所有 © 2026</p>
+        <p style="margin-top: 10px;">地址：星州省行政中心 | 备案号：XZ-20260001丨网站制作：呆下午年Daixiawunian</p>
+    </footer>
+</body>
+</html>
